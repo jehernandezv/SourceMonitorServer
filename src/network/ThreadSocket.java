@@ -24,12 +24,21 @@ public class ThreadSocket extends Thread{
 				try {
 					request = input.readUTF();
 					if (request != null) {
-						System.out.println("llega: " + request);
 						managerRequest(request);
 					}
 				} catch (IOException e) {
 					this.stop = true;
-					e.printStackTrace();
+						try {
+							this.stop = true;
+							this.input.close();
+							this.output.close();
+							this.connection.close();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							System.out.println(e1.getMessage());
+						}
+
+					System.out.println(e.getMessage());
 				}
 		}
 

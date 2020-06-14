@@ -28,13 +28,12 @@ public class Server extends Thread{
 					    try {
 							connection = serverSocket.accept();
 							System.out.println("New connection");
-							
 							ThreadSocket threadSocket = new ThreadSocket(connection);
 							this.connections.add(threadSocket);
 							LOGGER.log(Level.INFO, "Conexion aceptada: " + connection.getInetAddress().getHostAddress());
 						} catch (IOException e) {
 							this.stop = true;
-							e.printStackTrace();
+							System.out.println(e.getMessage());
 						}
 				}		
 			}
